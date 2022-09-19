@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
     struct Wall_collection *head = NULL;
     int front_centre_sensor, left_sensor, right_sensor=0;
     clock_t start_time, end_time;
+    start_time = clock();
     int msec;
     int crashed = 0;
 
@@ -66,8 +67,8 @@ int main(int argc, char *argv[]) {
         //Check if robot reaches endpoint. and check sensor values
         if (checkRobotReachedEnd(&robot, OVERALL_WINDOW_WIDTH, OVERALL_WINDOW_HEIGHT/2+100, 10, 100)){
             end_time = clock();
-            //msec = (end_time-start_time) * 1000 / CLOCKS_PER_SEC;
-            msec = (end_time-start_time) * 10 / sysconf(_SC_CLK_TCK);
+            msec = (end_time-start_time) * 1000 / CLOCKS_PER_SEC;
+            //msec = (end_time-start_time) * 10 / sysconf(_SC_CLK_TCK);
             robotSuccess(&robot, msec);
         }
         else if(crashed == 1 || checkRobotHitWalls(&robot, head)){
