@@ -35,11 +35,16 @@ struct Robot {
     int x, y;
     double true_x, true_y;
     int direction;
+    int direction2;
     int angle;
     int currentSpeed;
+    int currentSpeed2;
     int width, height;
     int crashed;
     int auto_mode;
+    int differential_mode;
+    int display_tangent;
+    int display_incidence;
 };
 
 #endif // STRUCTURES_H_INCLUDED

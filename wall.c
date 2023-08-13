@@ -14,6 +14,18 @@ void wallUpdate(SDL_Renderer * renderer, struct Wall * wall){
     SDL_RenderDrawRect(renderer, &rect);
 }
 
+void drawWallsOntoSurface(SDL_Surface* target, struct Wall_collection* head){
+    while (head != NULL){
+        struct Wall* wall = &(head->wall);
+        
+        SDL_Rect rect = {wall->x, wall->y, wall->width, wall->height};
+        //SDL_FillRect(target, &rect, SDL_MapRGBA(target->format, 207, 99, 85, 255));
+        SDL_FillRect(target, &rect, SDL_MapRGBA(target->format, 100, 100, 100, 255));
+        
+        head = head->next;
+    }
+}
+
 //insert link at the first location
 void insertFirstWall(struct Wall_collection ** head, int key, struct Wall * wall) {
    //create a link

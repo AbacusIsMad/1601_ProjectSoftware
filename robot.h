@@ -5,7 +5,6 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "SDL2/SDL.h"
-// and
 #include "SDL2/SDL2_gfxPrimitives.h"
 #include "formulas.h"
 #include "time.h"
@@ -18,10 +17,13 @@ void setup_robot(struct Robot *robot);
 //Error/Finish Checking
 int robot_off_screen(struct Robot * robot);
 int checkRobotHitWall(struct Robot * robot, struct Wall * wall);
-int checkRobotHitWalls(struct Robot * robot, struct Wall_collection * head);
+//int checkRobotHitWalls(struct Robot * robot, struct Wall_collection * head);
+int checkRobotHitWalls(struct Robot * robot, SDL_Surface* surface, SDL_Renderer* renderer);
 int checkRobotReachedEnd(struct Robot * robot, int x, int y, int width, int height);
 void robotCrash(struct Robot * robot);
 void robotSuccess(struct Robot * robot, int msec);
+
+void checkRobotSensors(struct Robot * robot, SDL_Surface* surface, int* dest);
 
 //Sensor Checking
 int checkRobotSensor(int x, int y, int sensorSensitivityLength, struct Wall * wall) ;
@@ -30,10 +32,10 @@ int checkRobotSensorRightAllWalls(struct Robot * robot, struct Wall_collection *
 int checkRobotSensorLeftAllWalls(struct Robot * robot, struct Wall_collection * head);
 
 //Visual Display
-void robotUpdate(struct SDL_Renderer * renderer, struct Robot * robot);
+void robotUpdate(struct SDL_Renderer * renderer, struct Robot * robot, SDL_Surface* surface);
 
 //Movement
 void robotMotorMove(struct Robot * robot, int crashed);
-void robotAutoMotorMove(struct Robot * robot, int front_centre_sensor, int left_sensor, int right_sensor);
+void robotAutoMotorMove(struct Robot * robot, int f, int l, int r, int isActive);
 
 #endif // ROBOT_H_INCLUDED
